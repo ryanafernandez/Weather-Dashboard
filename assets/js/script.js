@@ -75,7 +75,7 @@ var get5DayWeather = function (lat, lon) {
         .then(function (response) {
             if (response.ok) {
                 response.json().then(function (data) {
-
+                    console.log(data);
                     timeIndices.forEach(function(i) {
                         var weatherContainer = document.createElement('div');
                         var dateEl = document.createElement('h4');

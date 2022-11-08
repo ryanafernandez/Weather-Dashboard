@@ -3,6 +3,7 @@ var apiKey = "25eb352b4c90f492fe42536c88151915";
 var searchFormEl = document.querySelector('#search-form');
 var cityInputEl = document.querySelector('#city');
 var searchHistoryEl = document.querySelector('#search-history');
+var searchListEl = document.querySelector('#search-list');
 var cityDateEl = document.querySelector('#city-date');
 var iconEl = document.querySelector('#current-icon');
 var tempEl = document.querySelector('#current-temp');
@@ -84,6 +85,7 @@ var get5DayWeather = function (lat, lon) {
                         var windEl = document.createElement('li');
                         var humidityEl = document.createElement('li');
 
+                        weatherContainer.setAttribute("class", "small-card");
                         // Format date string
                         var date = new Date(data.list[i].dt*1000);
                         date = date.toLocaleDateString();
@@ -152,16 +154,24 @@ function init() {
 
 function addButton(btnText) {
     var buttonEl = document.createElement('btn');
+    var listEl = document.createElement('li');
+
     buttonEl.textContent = btnText;
-    searchHistoryEl.appendChild(buttonEl);
+
+    listEl.appendChild(buttonEl);
+    searchListEl.appendChild(listEl);
 }
 
 function renderSearchHistory() {
     searchHistory.forEach(function(entry) {
         console.log(entry);
         var buttonEl = document.createElement('btn');
+        var listEl = document.createElement('li');
+
         buttonEl.textContent = entry;
-        searchHistoryEl.appendChild(buttonEl);
+
+        listEl.appendChild(buttonEl);
+        searchListEl.appendChild(listEl);
     })
 }
 

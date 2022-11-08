@@ -31,7 +31,7 @@ var formSubmitHandler = function (event) {
 // getCurrentWeather takes a search term as an argument and runs a fetch request to Open Weather Map's Current Weather API.
 // The function will write the fetched current weather data to the HTML page and pass the coordinates of the user's search to get5DayWeather.
 var getCurrentWeather = function (searchTerm) {
-    var openWeatherMapApiUrl = `http://api.openweathermap.org/data/2.5/weather?q=${searchTerm}&appid=${apiKey}&units=imperial`;
+    var openWeatherMapApiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${searchTerm}&appid=${apiKey}&units=imperial`;
 
     fetch(openWeatherMapApiUrl)
         .then(function (response) {
@@ -39,7 +39,7 @@ var getCurrentWeather = function (searchTerm) {
                 response.json().then(function (data) {
                     // Create the Weather Icon
                     var iconImgEl = document.createElement('img');
-                    iconImgEl.setAttribute("src", `http://openweathermap.org/img/w/${data.weather[0].icon}.png`);
+                    iconImgEl.setAttribute("src", `https://openweathermap.org/img/w/${data.weather[0].icon}.png`);
 
                     // Format the current date
                     var date = new Date(data.dt*1000);
@@ -69,7 +69,7 @@ var getCurrentWeather = function (searchTerm) {
 // The function will parse through the feteched data using timeIndices and write the fetched 5 day forecast to the HTML page.
 var timeIndices = [8,16,24,32,39];
 var get5DayWeather = function (lat, lon) {
-    var fiveDayWeatherApiUrl = `http://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${apiKey}&units=imperial`;
+    var fiveDayWeatherApiUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${apiKey}&units=imperial`;
 
     fetch(fiveDayWeatherApiUrl)
         .then(function (response) {
@@ -90,7 +90,7 @@ var get5DayWeather = function (lat, lon) {
                         var date = new Date(data.list[i].dt*1000);
                         date = date.toLocaleDateString();
                         
-                        iconEl.setAttribute("src", `http://openweathermap.org/img/w/${data.list[i].weather[0].icon}.png`);
+                        iconEl.setAttribute("src", `https://openweathermap.org/img/w/${data.list[i].weather[0].icon}.png`);
 
                         dateEl.textContent = `${date}`;
                         dateEl.appendChild(iconEl);
